@@ -1,0 +1,11 @@
+<h2>Job Description</h2>
+<h3><%= @job.title %></h3>
+<h3><%= @job.company %></h3>
+<p><%= @job.description %></p>
+<h4>Skills Desired</h4>
+
+
+<%= form_tag('/applications') do %>
+  <%= hidden_field_tag "job", @job.id %>
+  <%= submit_tag "Apply for Job", class: 'btn btn-primary' %>
+<% end %>

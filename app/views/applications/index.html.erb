@@ -1,0 +1,10 @@
+<h2>
+  <%= @user.first_name %>'s Applications
+</h2>
+<% @applications.each do |application| %>
+  <h4>
+    <%= link_to application.job.title %> |
+    <%= application.job.company %> |
+    <%= link_to "Withdraw Application", application_path(application), method: 'delete' %>
+  </h4>
+<% end %>

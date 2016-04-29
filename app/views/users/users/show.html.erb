@@ -1,0 +1,13 @@
+<h1>Profile</h1>
+<h3>Name: <%= @user.first_name %> <%= @user.last_name %></h3>
+<p>
+  <%= @user.email %> <br>
+  <%= @user.cell_phone %>
+</p>
+<h3>Address: </h3>
+<h4><%= @user.street_1 %></h4>
+<h4><%= @user.street_2 %></h4>
+<h4><%= @user.city %>, <%= @user.state %> <%= @user.zip_code %></h4>
+<% if current_user.id == @user.id %>
+  <%= link_to "Edit Profile", edit_user_path(@user), role: 'button', class: 'btn btn-primary' %>
+<% end %>
