@@ -4,13 +4,25 @@ class ApplicationsController < ApplicationController
     @applications = @user.applications
   end
 
-  def create
-    job = Job.find(params[:job])
-    if current_user.jobs.find_by(id: job.id)
+  def new
+    @job = Job.find(params[:job])
+    if current_user.jobs.find_by(id: @job.id)
       flash[:notice] = "Already applied for job"
-      redirect_to job_path(job)
+      redirect_to job_path(@job)
     else
-      @application = current_user.applications.build(job_id: params[:job])
+      @application = Application.new
+      @application.references.build
+      @application.references.build
+    end
+  end
+
+  def create
+    # job = Job.find(params[:application][:job_id])
+    # if current_user.jobs.find_by(id: job.id)
+    #   flash[:notice] = "Already applied for job"
+    #   redirect_to job_path(job)
+    # else
+      @application = current_user.applications.build(app_params)
       if @application.save
         flash[:notice] = "Applied for job!"
         redirect_to user_applications_path(current_user)
@@ -18,7 +30,7 @@ class ApplicationsController < ApplicationController
         flash[:notice] = "Unable to apply for job."
         redirect_to user_applications_path(current_user)
       end
-    end
+    # end
   end
 
   def destroy
@@ -26,4 +38,14 @@ class ApplicationsController < ApplicationController
     @application.delete
     redirect_to user_applications_path(current_user)
   end
+
+  def show
+    @application = Application.find(params[:id])
+    # raise @application.inspect
+  end
+
+  private
+    def app_params
+      params.require(:application).permit(:job_id, :cover_letter, :references_attributes => [:name, :phone_number, :relationship])
+    end
 end

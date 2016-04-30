@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429061906) do
+ActiveRecord::Schema.define(version: 20160429225207) do
 
   create_table "applications", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "job_id"
     t.integer  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.text     "cover_letter"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -28,6 +29,15 @@ ActiveRecord::Schema.define(version: 20160429061906) do
     t.boolean  "filled"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "references", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone_number"
+    t.string   "relationship"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "application_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -3,7 +3,7 @@
 </h2>
 <% @applications.each do |application| %>
   <h4>
-    <%= link_to application.job.title %> |
+    <%= link_to application.job.title, application_path(application) %> |
     <%= application.job.company %> |
     <%= link_to "Withdraw Application", application_path(application), method: 'delete' %>
   </h4>

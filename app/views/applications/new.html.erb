@@ -1,0 +1,15 @@
+<h2>Applying for <%= @job.title %></h2>
+<h4>at</h4>
+<h3><%= @job.company %></h3>
+
+<%= form_for(@application) do |f| %>
+  <%= f.text_area :cover_letter, class: 'form-control', placeholder: 'Enter your cover letter here...' %> <br>
+  <%= f.hidden_field :job_id, value: @job.id %>
+  <p>Please list two references below...</p> <br>
+  <%= f.fields_for :references do |ref| %>
+    <%= ref.text_field :name, class: 'form-control', placeholder: 'Reference Name' %> <br>
+    <%= ref.text_field :phone_number, class: 'form-control', placeholder: 'Reference Phone Number' %> <br>
+    <%= ref.text_field :relationship, class: 'form-control', placeholder: 'Reference Relationship' %> <br>
+  <% end %>
+  <%= f.submit %>
+<% end %>
