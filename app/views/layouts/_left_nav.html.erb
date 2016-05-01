@@ -1,0 +1,11 @@
+<ul class="nav navbar-nav">
+  <% if user_signed_in? %>
+    <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+    <% if current_user.profile_created %>
+      <li><%=link_to 'Signed in as ' + current_user.first_name, user_path(current_user) %></li>
+    <% end %>
+  <% else %>
+    <li><%= link_to "Sign up", new_user_registration_path %></li>
+    <li><%= link_to "Sign in", new_user_session_path %></li>
+  <% end %>
+</ul>

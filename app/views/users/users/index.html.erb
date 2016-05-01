@@ -1,4 +1,2 @@
 <%= content_tag(:h1, "Job Seekers") %>
-<% @users.each do |user| %>
-  <h3><a href='/users/<%=user.id%>'><%= user.first_name %> <%= user.last_name %> | <%= user.city %>, <%= user.state %></a></h3>
-<% end %>
+<%= render partial: "user", collection: @users %>

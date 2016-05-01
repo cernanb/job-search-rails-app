@@ -1,7 +1,2 @@
 <h2>Create a new job</h2>
-<%= form_for(@job) do |f| %>
-  <%= f.text_field :title, class: 'form-control', placeholder: 'Title' %> <br>
-  <%= f.text_field :company, class: 'form-control', placeholder: 'Company' %> <br>
-  <%= f.text_field :description, class: 'form-control', placeholder: 'Description' %> <br>
-  <%= f.submit role: 'button', class: 'btn btn-primary' %>
-<% end %>
+<%= render partial: 'form', locals: {job: @job} %>

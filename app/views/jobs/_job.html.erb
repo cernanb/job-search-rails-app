@@ -1,0 +1,4 @@
+<h4>
+  <%= link_to "#{job.title} | #{job.company} | Applications submitted: #{job.users.size}", job_path(job) %>
+</h4>
+<p><%= excerpt(job.description, job.description[0], radius: 50) %></p> <hr>

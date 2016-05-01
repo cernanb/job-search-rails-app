@@ -17,25 +17,20 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    # job = Job.find(params[:application][:job_id])
-    # if current_user.jobs.find_by(id: job.id)
-    #   flash[:notice] = "Already applied for job"
-    #   redirect_to job_path(job)
-    # else
-      @application = current_user.applications.build(app_params)
-      if @application.save
-        flash[:notice] = "Applied for job!"
-        redirect_to user_applications_path(current_user)
-      else
-        flash[:notice] = "Unable to apply for job."
-        redirect_to user_applications_path(current_user)
-      end
-    # end
+    @job = Job.find(params[:application][:job_id])
+    @application = current_user.applications.build(app_params)
+    if @application.save
+      flash[:notice] = "Applied for job!"
+      redirect_to user_applications_path(current_user)
+    else
+      flash.now[:error] = "Unable to apply for job."
+      render 'applications/new'
+    end
   end
 
   def destroy
     @application = Application.find(params[:id])
-    @application.delete
+    @application.destroy
     redirect_to user_applications_path(current_user)
   end
 

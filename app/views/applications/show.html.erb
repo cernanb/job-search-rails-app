@@ -1,10 +1,7 @@
 <h2>Application for <%= @application.job.title %></h2>
 <h3><%= @application.job.company %></h3> <br>
 <% @application.references.each_with_index do |ref, index| %>
-  <h4>Reference# <%= index + 1 %></h4>
-  <p><%= ref.name %></p>
-  <p><%= ref.phone_number %></p>
-  <p><%= ref.relationship %></p>
+  <%= render partial: 'references/reference', locals: {ref: ref, index: index} %>
 <% end %>
 <h3>Cover Letter</h3>
 <p><%= @application.cover_letter %></p>

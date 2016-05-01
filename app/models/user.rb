@@ -4,9 +4,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:github]
+
   has_many :applications
   has_many :jobs, through: :applications
   has_many :references, through: :applications
+  
 
 
   def self.from_omniauth(auth)

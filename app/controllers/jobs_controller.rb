@@ -2,13 +2,7 @@ class JobsController < ApplicationController
   before_action :authenticate_user!, only: [:show]
 
   def index
-    # raise params.inspect
-    if params[:user_id]
-      @user = User.find(params[:user_id])
-      @jobs = @user.jobs
-    else
-      @jobs = Job.all
-    end
+    @jobs = Job.order_by_num_of_apps
   end
 
   def new
@@ -18,11 +12,11 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     if @job.save
+      flash[:notice] = "Job created"
       redirect_to jobs_path
     else
       render 'jobs/new'
     end
-    # raise @job.inspect
   end
 
   def show

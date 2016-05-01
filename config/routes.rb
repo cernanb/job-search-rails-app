@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  root 'jobs#index'
+
+  authenticated :user do
+    root 'jobs#index', as: :authenticated_root
+  end
+  root 'static#home'
 
   resources :users, :controller => "users/users", only: [:edit, :update, :show, :index] do
     resources :applications, only: [:index]

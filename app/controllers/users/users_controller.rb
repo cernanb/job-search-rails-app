@@ -14,6 +14,7 @@ class Users::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @user.profile_created = true
     @user.update(user_params)
     redirect_to user_path(@user)
   end
