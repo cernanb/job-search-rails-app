@@ -3,7 +3,7 @@
 <h3><%= @job.company %></h3>
 
 <%= form_for(@application) do |f| %>
-  <%= f.text_area :cover_letter, class: 'form-control', placeholder: @application.errors.any? ? "#{@application.errors.full_messages_for(:cover_letter).to_sentence}" : 'Enter your cover letter here...' %> <br>
+  <%= f.text_area :cover_letter, class: 'form-control', placeholder: @application.errors.any? ? display_error_message(@application, :cover_letter) : 'Enter your cover letter here...' %> <br>
   <%= f.hidden_field :job_id, value: @job.id %>
   <p>Please list two references below...</p> <br>
   <%= f.fields_for :references do |ref| %>
