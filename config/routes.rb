@@ -15,6 +15,5 @@ Rails.application.routes.draw do
   end
 
   resources :applications, only: [:create, :destroy, :create, :show]
-  # post 'applications/new' => 'applications#new'
 
 end

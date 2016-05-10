@@ -44,7 +44,8 @@ div#flash_notice {
   margin: auto;
   width: 60%;
 }
-div#flash_error {
+div#flash_error,
+div#error_explanation li {
   background-color: red;
   height: 30px;
   text-align: center;
