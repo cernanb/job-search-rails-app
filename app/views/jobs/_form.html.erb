@@ -1,6 +1,6 @@
 <%= form_for(job) do |f| %>
   <%= f.text_field :title, class: 'form-control', placeholder: @job.errors[:title].any? ? "#{@job.errors.full_messages_for(:title).to_sentence}" : 'Title' %> <br>
   <%= f.text_field :company, class: 'form-control', placeholder: @job.errors[:company].any? ? "#{@job.errors.full_messages_for(:company).to_sentence}" : 'Company' %> <br>
-  <%= f.text_field :description, class: 'form-control', placeholder: @job.errors[:description].any? ? "#{@job.errors.full_messages_for(:description).to_sentence}" : 'Description' %> <br>
+  <%= f.text_area :description, class: 'form-control', placeholder: @job.errors[:description].any? ? "#{@job.errors.full_messages_for(:description).to_sentence}" : 'Description' %> <br>
   <%= f.submit role: 'button', class: 'btn btn-primary' %>
 <% end %>

@@ -5,7 +5,7 @@ class ApplicationsController < ApplicationController
   end
 
   def new
-    @job = Job.find(params[:job])
+    @job = Job.find(params[:job_id])
     if current_user.jobs.find_by(id: @job.id)
       flash[:notice] = "Already applied for job"
       redirect_to job_path(@job)

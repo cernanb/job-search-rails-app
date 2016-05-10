@@ -10,9 +10,11 @@ Rails.application.routes.draw do
     resources :applications, only: [:index]
   end
 
-  resources :jobs, only: [:index, :new, :create, :show]
+  resources :jobs, only: [:index, :new, :create, :show] do
+    resources :applications, only: [:new]
+  end
 
   resources :applications, only: [:create, :destroy, :create, :show]
-  post 'applications/new' => 'applications#new'
+  # post 'applications/new' => 'applications#new'
 
 end
