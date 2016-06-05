@@ -1,7 +1,19 @@
-<h3><%= @job.title %></h3>
-<h3><%= @job.company %></h3>
+<h3 class="jobTitle"><%= @job.title %></h3>
+<h3 class="jobComp"><%= @job.company %></h3>
 <h2>Job Description</h2>
-<p><%= @job.description %></p>
+<p class="jobDesc"><%= @job.description %></p>
 
 
-<%= link_to "Apply for Job", new_job_application_path(@job), class: 'btn btn-primary' %>
+<%= link_to "Apply for Job", new_job_application_path(@job), class: 'btn btn-primary applyBtn' %> <br><br>
+
+
+<div id="jobList">
+  <% @job.applications.each do |app| %>
+    <p><%= link_to "#{app.user.first_name} #{ app.user.last_name}'s Application", application_path(app) %></p>
+  <% end %>
+</div>
+
+<a class="pull-left js-prev" data-id="<%= @job.id %>" href="#">Previous job...</a>
+
+
+<a class="pull-right js-next" data-id="<%= @job.id %>" href="#">Next job...</a>

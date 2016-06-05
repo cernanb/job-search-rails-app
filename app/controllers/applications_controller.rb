@@ -36,6 +36,11 @@ class ApplicationsController < ApplicationController
 
   def show
     @application = Application.find(params[:id])
+    @comment = Comment.new
+    respond_to do |f|
+      f.html { render :show }
+      f.json { render json: @application }
+    end
     # raise @application.inspect
   end
 

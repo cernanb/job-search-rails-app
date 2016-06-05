@@ -15,5 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :applications, only: [:create, :destroy, :show]
+  resources :comments, only: [:show, :new, :create]
+
+  get '/search' => 'jobs#search'
+  post '/search' => 'jobs#search_job'
 
 end

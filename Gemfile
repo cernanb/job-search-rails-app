@@ -15,6 +15,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'bcrypt'
+gem 'active_model_serializers', '0.9.4'
 
 group :development, :test do
   gem 'byebug'

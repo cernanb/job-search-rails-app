@@ -1,0 +1,5 @@
+Search Jobs
+<%= form_tag('/search') do %>
+  <%= text_field_tag 'job', nil,  placeholder: "Search for a job" %>
+  <%= submit_tag "Search" %>
+<% end %>

@@ -21,6 +21,18 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
+    respond_to do |f|
+      f.html { render :show }
+      f.json { render json: @job }
+    end
+  end
+
+  # def search
+  #
+  # end
+
+  def search_job
+    @jobs = Job.where("company LIKE ?", "%#{params[:job]}%")
   end
 
   private

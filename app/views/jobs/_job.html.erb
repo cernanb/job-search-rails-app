@@ -1,4 +1,5 @@
 <h4>
   <%= link_to "#{job.title} | #{job.company} | Applications submitted: #{job.users.size}", job_path(job) %>
 </h4>
-<p><%= excerpt(job.description, job.description[0], radius: 50) %></p> <hr>
+<p id="body-<%= job.id %>"><%= excerpt(job.description, job.description[0], radius: 50) %></p>
+<button class="js-more" data-id="<%= job.id %>">More...</button> <hr>

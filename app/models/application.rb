@@ -2,6 +2,7 @@ class Application < ActiveRecord::Base
   belongs_to :user
   belongs_to :job
   has_many :references
+  has_many :comments
 
   validates_presence_of :cover_letter
 

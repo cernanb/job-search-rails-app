@@ -1,9 +1,29 @@
-<h2>Application for <%= @application.job.title %></h2>
-<h3><%= @application.job.company %></h3> <br>
-<% @application.references.each_with_index do |ref, index| %>
-  <%= render partial: 'references/reference', locals: {ref: ref, index: index} %>
-<% end %>
-<h3>Cover Letter</h3>
-<p><%= @application.cover_letter %></p>
+<div class="col-md-8">
+  <h2>Application for <%= @application.job.title %></h2>
+  <h3><%= @application.job.company %></h3> <br>
+  <% @application.references.each_with_index do |ref, index| %>
+    <%= render partial: 'references/reference', locals: {ref: ref, index: index} %>
+  <% end %>
+  <h3>Cover Letter</h3>
+  <p><%= @application.cover_letter %></p>
 
-<%= link_to "Withdraw Application", application_path(@application), class: 'btn btn-primary', method: 'delete' %>
+  <%= link_to "Withdraw Application", application_path(@application), class: 'btn btn-primary', method: 'delete' %>
+</div>
+
+
+<div class="col-md-4">
+  <h2 id="status-list">Status Updates</h2>
+  <div id="comments_list">
+    <% @application.comments.each do |comment| %>
+      <p><%= comment.format_time %> -
+        <%= comment.content %></p>
+        <hr>
+    <% end %>
+  </div>
+
+  <%= form_for(@comment) do |f| %>
+    <%= f.text_field :content %>
+    <%= f.hidden_field :application_id, :value => @application.id %>
+    <%= f.submit "Update application status" %>
+  <% end %>
+</div>
